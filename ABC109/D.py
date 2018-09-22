@@ -1,7 +1,7 @@
 def solve(string):
     ins = string.split("\n")
     h, w = map(int, ins[0].split(" "))
-    a = [list(map(lambda x: int(x) % 2 == 1, input().strip().split(" "))) for _i in range(h)]
+    a = [list(map(lambda x: int(x) % 2 == 1, _i.strip().split(" "))) for _i in ins[1:]]
     move = []
     for i in range(h):
         for j in range(w):
@@ -19,4 +19,7 @@ def solve(string):
 
 if __name__ == '__main__':
     line = input().strip()
-    print(solve(line))
+    h, w = map(int, line.split(" "))
+    ins = [input() for _ in range(h)]
+    ins.insert(0, line)
+    print(solve("\n".join(ins)))
