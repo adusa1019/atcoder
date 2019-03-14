@@ -45,7 +45,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     prob_char = ["a", "b", "c", "d"]
-    base = "https://{div}{num}.contest.atcoder.jp/".format(div=args.division, num=args.number)
+    base = "https://{div}{num:03}.contest.atcoder.jp/".format(div=args.division, num=args.number)
     r = requests.get(base + "assignments/")
     tmp = [_l for _l in r.text.split("\n") if "linkwrapper" in _l.strip()][::2]
     urls = [_t.split("href=\"")[1].split("\">")[0] for _t in tmp]
