@@ -51,7 +51,7 @@ if __name__ == "__main__":
     urls = [_t.split("href=\"")[1].split("\">")[0] for _t in tmp]
 
     for _c, _u in zip(prob_char, urls):
-        save_dir = "{}{}".format(args.division.upper(), args.number)
+        save_dir = "{}{:03}".format(args.division.upper(), args.number)
         if not os.path.exists(save_dir):
             os.mkdir(save_dir)
 
