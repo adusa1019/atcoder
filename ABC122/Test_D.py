@@ -1,5 +1,6 @@
 import pytest
-from D import solve
+# from D import solve
+from D_1 import solve
 
 
 def test_solve():
