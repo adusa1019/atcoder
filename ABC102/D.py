@@ -1,24 +1,17 @@
-def tmp(a, b, c):
-    return abs(a - b), abs(a - b + 2 * c)
+from itertools import accumulate
 
 
 def solve(string):
     n, *a = map(int, string.split())
-    l, c, r = 1, 2, 3
-    sll, slr, srl, srr = sum(a[:l]), sum(a[l:c]), sum(a[c:r]), sum(a[r:])
-    ans = max(sll, slr, srl, srr) - min(sll, slr, srl, srr)
-    while c < n - 1:
-
-        d, dn = tmp(sll, slr, a[l])
-        while dn < d:
-            sll, slr, l = sll + a[l], slr - a[l], l + 1
-            d, dn = tmp(sll, slr, a[l])
-        d, dn = tmp(srl, srr, a[r])
-        while dn < d:
-            srl, srr, r = srl + a[r], srr - a[r], r + 1
-            d, dn = tmp(srl, srr, a[r])
-        ans = min(ans, max(sll, slr, srl, srr) - min(sll, slr, srl, srr))
-        slr, srl, c = slr + a[c], srl - a[c], c + 1
+    *a, = accumulate(a)
+    l, r, e, ans = 0, 2, a[-1], a[-1]
+    for c in a[1:-2]:
+        while a[l] + a[l + 1] < c:
+            l += 1
+        while a[r] + a[r + 1] < c + e:
+            r += 1
+        t = sorted([a[l], c - a[l], a[r] - c, e - a[r]])
+        ans = min(ans, t[-1] - t[0])
     return str(ans)
 
 
