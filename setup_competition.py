@@ -26,8 +26,8 @@ def make_test_code(_file, problem, _in, _out):
         f.write("from {} import solve\n\n\n".format(problem.upper()))
         f.write("def test_solve():\n")
         for _i, _o in zip(_in, _out):
-            f.write("    assert solve('{}') == '{}'\n".format(
-                _i.replace("\n", "\\n"), _o.replace("\n", "\\n")))
+            f.write("    assert solve('{}') == '{}'\n".format(_i.replace("\n", "\\n"),
+                                                              _o.replace("\n", "\\n")))
 
 
 def make_answer_basecode(_file):
@@ -44,7 +44,7 @@ if __name__ == "__main__":
     parser.add_argument("--division", choices=["abc", "arc"], default="abc")
     args = parser.parse_args()
 
-    prob_char = ["a", "b", "c", "d"]
+    prob_char = ["a", "b", "c", "d"] if args.number < 126 else ["a", "b", "c", "d", "e", "f"]
     base = "https://{div}{num:03}.contest.atcoder.jp/".format(div=args.division, num=args.number)
     r = requests.get(base + "assignments/")
     tmp = [_l for _l in r.text.split("\n") if "linkwrapper" in _l.strip()][::2]
