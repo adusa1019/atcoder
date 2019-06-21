@@ -23,12 +23,19 @@ def get_urls(result):
     return [(b.text, base + b.attrs["href"].split("/")[-1]) for b in urls]
 
 
-def get_ins_outs(result):
-    return [
-        b.text.strip()
-        for b in bs(result.text, "html.parser").find_all("pre")
-        if len(b.contents) == 1 and tag_visible(b)
-    ]
+def get_ins_outs(result, num):
+    if num >= 42:
+        return [
+            b.text.strip()
+            for b in bs(result.text, "html.parser").find(class_="lang-ja").find_all("pre")
+            if len(b.contents) == 1
+        ]
+    else:
+        return [
+            b.text.strip()
+            for b in bs(result.text, "html.parser").find_all("pre")
+            if len(b.contents) == 1
+        ]
 
 
 def make_test_code(savedir, problem, inout):
@@ -49,14 +56,6 @@ def make_answer_basecode(_file):
         f.write("    print(solve(input()))\n")
 
 
-def tag_visible(element):
-    if element.parent.name in ['style', 'script', 'head', 'title', 'meta', '[document]']:
-        return False
-    if isinstance(element, Comment):
-        return False
-    return True
-
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("number", type=int)
@@ -72,4 +71,4 @@ if __name__ == "__main__":
         urls = get_urls(s.get(base))
         for name, url in urls:
             make_answer_basecode("{}/{}.py".format(save_dir, name))
-            make_test_code(save_dir, name, get_ins_outs(s.get(url)))
+            make_test_code(save_dir, name, get_ins_outs(s.get(url), args.number))
