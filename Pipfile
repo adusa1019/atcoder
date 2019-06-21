@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 numpy = "*"
 requests = "*"
+beautifulsoup4 = "*"
+lxml = "*"
 
 [dev-packages]
 rope = "*"
