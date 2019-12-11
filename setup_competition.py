@@ -49,10 +49,10 @@ def make_test_code(savedir, problem, inout):
 
 def make_answer_basecode(_file):
     with open(_file, "w") as f:
-        f.write("import sys\n\n")
         f.write("def solve(string):\n")
         f.write("    pass\n\n\n")
         f.write("if __name__ == '__main__':\n")
+        f.write("    import sys\n")
         f.write("    print(solve(sys.stdin.read()))\n")
 
 
