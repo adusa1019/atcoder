@@ -3,7 +3,6 @@ import os
 
 import requests
 from bs4 import BeautifulSoup as bs
-from bs4.element import Comment
 
 import config
 
@@ -50,10 +49,11 @@ def make_test_code(savedir, problem, inout):
 
 def make_answer_basecode(_file):
     with open(_file, "w") as f:
+        f.write("import sys\n\n")
         f.write("def solve(string):\n")
         f.write("    pass\n\n\n")
         f.write("if __name__ == '__main__':\n")
-        f.write("    print(solve(input()))\n")
+        f.write("    print(solve(sys.stdin.read()))\n")
 
 
 if __name__ == "__main__":
