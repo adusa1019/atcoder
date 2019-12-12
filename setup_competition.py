@@ -53,7 +53,7 @@ def make_answer_basecode(_file):
         f.write("    pass\n\n\n")
         f.write("if __name__ == '__main__':\n")
         f.write("    import sys\n")
-        f.write("    print(solve(sys.stdin.read()))\n")
+        f.write("    print(solve(sys.stdin.read().strip()))\n")
 
 
 if __name__ == "__main__":
