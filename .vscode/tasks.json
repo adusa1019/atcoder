@@ -1,0 +1,53 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "echoCommand": true,
+    "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "new"
+    },
+    "options": {
+        "cwd": "${fileDirname}",
+        "env": {
+            "PYTHONIOENCODING": "UTF-8",
+        }
+    },
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "~/.poetry/bin/poetry",
+            "args": [
+                "run",
+                "python",
+                "${file}"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "unittest",
+            "type": "shell",
+            "command": "~/.poetry/bin/poetry",
+            "args": [
+                "run",
+                "pytest",
+                "-vvvv",
+                "--duration=0",
+                "--ff",
+                // "--pdb",
+                "${file}"
+            ],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        }
+    ],
+    "problemMatcher": "$tsc"
+}
