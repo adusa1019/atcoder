@@ -5,17 +5,17 @@ description = ""
 authors = ["adusa"]
 
 [tool.poetry.dependencies]
-python = "3.4.3"
-numpy = "1.8.2"
-scipy = "0.13.3"
+python = "3.8.2"
+numpy = "1.18.2"
+scipy = "1.4.1"
 beautifulsoup4 = "^4.8.2"
-requests = "2.21"
-lxml = "4.3"
+requests = "^2.21"
+lxml = "^4.3"
 
 [tool.poetry.dev-dependencies]
 yapf = "^0.29.0"
 flake8 = "^3.7.9"
-pytest = "4.6"
+pytest = "^4.6"
 
 [build-system]
 requires = ["poetry>=0.12"]
