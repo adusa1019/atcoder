@@ -8,15 +8,9 @@ def solve(string):
     t = Counter(a)
     ans = []
     for b, c in zip(*[iter(bc)] * 2):
-        if b not in t.keys():
-            ans.append(s)
-            continue
-        if c in t.keys():
-            t[c] += t[b]
-        else:
-            t[c] = t[b]
-        s += (c - b) * t[b]
-        del t[b]
+        if b in t.keys():
+            s += (c - b) * t[b]
+            t[b], t[c] = 0, t[b] + t[c]
         ans.append(s)
     return "\n".join(map(str, ans))
 
